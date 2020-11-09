@@ -12,12 +12,9 @@ function GenerateForecast(City) {
     $.ajax({
     url: `https://api.openweathermap.org/data/2.5/forecast?q=${City}&appid=17ccfa89bc98c9fc263d38f1ef25b232`,
     method: "GET",
-    dataType: "jsonp",
-    success: function(data){
-            console.log(data);
-        }
+    dataType: "json"
     })
-    .catch(function(err) {
-      console.log(err);
-    });
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => alert("No data for "+City));
 };
