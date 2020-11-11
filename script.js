@@ -1,20 +1,37 @@
 
 
 $("#SearchCity").on("click", () => {
-    var CityName = document.getElementById("InputCity").value;
-    var State = $("#StateSelect option:selected").attr("value");
+    var City = document.getElementById("InputCity").value;
 
-    GenerateForecast(CityName, State)
+    GenerateForecast(City)
 });
 
-function GenerateForecast(City) {
+
+function GenerateForecast(CityInput) {
+
+    var openweather = "https://api.openweathermap.org/data/2.5/weather?q=";
+    var APIkey = "17ccfa89bc98c9fc263d38f1ef25b232";
+    var queryURL = openweather + CityInput + "&appid=" + APIkey;
+
+    console.log(queryURL);
     
     $.ajax({
-    url: `https://api.openweathermap.org/data/2.5/forecast?q=${City}&appid=17ccfa89bc98c9fc263d38f1ef25b232`,
-    method: "GET",
-    dataType: "json"
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => alert("No data for "+City));
+        Type: "POST",
+        url: queryURL,
+        dataType: "json",
+        success: utilizeResponse,
+        error: function (err){
+            console.log(err)
+        }
+    });
+
+    function utilizeResponse(response) {
+        var eCitySelectedDisplay = document.getElementById("CitySelected");
+        var CitySelected = response.name;
+
+        eCitySelectedDisplay.textContent = CitySelected;
+    }
+
 };
+
+
