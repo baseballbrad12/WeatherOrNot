@@ -1,8 +1,22 @@
-
-.Jumbo1 {
-    color: lightcoral;
+#Heading{
+    text-align: center;
+    font-size: 75px;
+    font-family: 'Anton', sans-serif;
 }
-
-.Jumbo2{
-    background-color: lightcyan;
+.InputSelect{
+    text-align: center;
+}
+#InputJumbo{
+    background-color: orange;
+}
+#SearchCity{
+    color: blue;
+    border-color: blue;
+}
+#SearchCity:hover{
+    background-color: lightblue;
+}
+#CitySelected{
+    font-size: 50px;
+    text-align: center;
 }
